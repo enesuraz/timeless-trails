@@ -1,0 +1,4 @@
+mixin formGroup(id,label,value,placeholder)
+    .form__group 
+        label(for=`${id}` class='form__label')= label
+        input(type="text" id=`${id}` class='form__input' placeholder=`${placeholder}` value=`${value}`)

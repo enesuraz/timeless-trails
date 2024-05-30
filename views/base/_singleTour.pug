@@ -1,0 +1,23 @@
+mixin cardDetail(icon,description)
+  .card__icons-detail
+    svg
+      use(href=`/assets/icons.svg#${icon}`)
+    span= description
+
+mixin singleTour(buttonName,href,tour,admin)
+  .card
+    .card__image
+      img(src=`/assets/tours/${tour.imageCover}` alt=`${tour.name}`)
+      a(href=`${href}`, class='btn')= buttonName
+      if admin
+        button(class='btn--delete-tour' data-id=`${tour.id}`) Delete tour
+    .card__icons
+      +cardDetail('icon-calendar',tour.startDates[0].toLocaleString("en-US", { month: "long", year: "numeric" }))
+      +cardDetail('icon-user',tour.maxGroupSize)
+      +cardDetail('icon-map',tour.startLocation.description)
+      +cardDetail('icon-flag',`${tour.locations.length} stop`)
+    .card__detail
+      h3.card__title= tour.name 
+      p.card__description= tour.summary
+      span.card__price= `$${tour.price}`
+      span.card__rating= `${tour.ratingsAverage} Rated`

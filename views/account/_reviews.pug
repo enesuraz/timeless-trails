@@ -1,0 +1,21 @@
+if reviews.length > 0
+    .reviews-container.grid
+        each review in reviews
+            form(class='form form--update-review' id=`review-${review.id}`)
+                h2 Update Review on 
+                    a(href=`/tour/${review.tour.slug}` class='header-link')= `${review.tour.name}`
+                p Use the form below to update your review and let us know how we did
+                .form__group 
+                    label(for="review" class='form__label') Update Review
+                    textarea(id='review' class='form__textarea' rows='7')= review.review
+                .form__group.form__group--stars
+                    each star in [1,2,3,4,5]
+                        svg(data-star=`${star}` class='form__star' onclick="handleStar(event)")
+                            use(href=`/assets/icons.svg#icon-star${review.rating >= star ? '' : '-outlined'}`)
+                span.form__error
+                .form__group--buttons
+                    button(type='submit' class='btn') Update Review
+                    button(type='button' class='form__delete form__delete--review-delete' data-id=`${review.id}`) Delete Review
+else 
+    .center 
+        h2 We did not find any review yet

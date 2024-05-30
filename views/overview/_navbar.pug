@@ -1,0 +1,22 @@
+nav.navbar 
+  ul.navbar__list
+    li.navbar__item
+      a(href="/" class="navbar__link") All Tours
+    if user
+      li.navbar__item
+        a(href="/my-tours" class="navbar__link") My Tours
+  .navbar__logo
+    img(src='/assets/logo.png' alt='Logo')
+  ul.navbar__user
+    if user
+      li.navbar__item
+        button(class='btn' id='logout') Logout
+      li.navbar__item 
+        a(href="/account/settings" class="navbar__link navbar__link--photo")
+          img(src=`/assets/users/${user.photo ? user.photo : 'default.jpg'}` alt=`${user.name}`)
+          span= user.name.split(' ')[0]
+    else
+      li.navbar__item 
+        a(href="/login" class="btn") Login 
+      li.navbar__item 
+        a(href="/signup" class="btn") Sign Up 

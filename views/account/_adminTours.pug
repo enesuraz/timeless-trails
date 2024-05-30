@@ -1,0 +1,16 @@
+if currentUrl.split('/')[3]
+    include _tourForm
+    - const fields = ["name","startLocation","duration","maxGroupSize","difficulty","price","summary","description","locations","startDates"]
+    - const usersInfo = users.map(user =>{return {username: user.name,id: user._id.toString(),role:user.role}})
+    - if(currentUrl.split('/')[3] === 'create')
+        +tourForm('create tour','Create A Tour','Design an unforgettable historical adventure with Timeless Trails. Use the form below to create a new tour, detailing the locations, highlights, and unique experiences that await your travelers',fields,usersInfo)
+    - else
+        - const inputsData = [tour.name,tour.startLocation,tour.duration,tour.maxGroupSize,tour.difficulty,tour.price,tour.summary,tour.description,tour.locations,tour.startDates]
+        +tourForm('edit tour','Edit Tour Details',"Refine and update your tour with Timeless Trails. Use the form below to make adjustments to your tour's itinerary, descriptions, and other details.",fields,usersInfo,inputsData,{imageCover:tour.imageCover,images:tour.images},tour.guides,tour.id)
+else 
+    .admin-overview.grid
+        each tour in tours
+            include ../base/_singleTour
+            +singleTour('Edit Tour',`/account/admin-tours/${tour.slug}`,tour,true)
+    .center 
+        a(class='btn' href='/account/admin-tours/create') Create Tour  

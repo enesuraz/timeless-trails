@@ -1,0 +1,97 @@
+mixin tourFormLocationGroup(className,id,label,placeholder,value)
+  div(class=`${className}`)
+    label(for=`${id}` class='form__label' )= label 
+    input(type="text" class=`${!id.includes('start') ? `form__input form__input--${label}`: 'form__input'}` id=`${id}` placeholder=`${placeholder}` value=`${value}`)
+
+mixin tourFormImageGroup(id,label,images)
+  .form__group
+    label(for=`${id}` class="form__label--tour-photo")
+      - if(images)
+        - if(Array.isArray(images))
+          .form__images
+            each photo in images
+              img(src=`/assets/tours/${photo}`)
+        - else
+          .form__cover-image
+            img(src=`/assets/tours/${images}`)
+      - else
+        - if(id === 'cover')
+          .form__cover-image
+        - else 
+          .form__images
+      span.btn= label
+    input(type="file" accept='image/*' id=`${id}` multiple=`${id === 'photos'}`)
+
+mixin tourForm(id,title,description,labels,users,values,images,tourUsers,tourId)
+  form(id=`${id}`, class='form form--tour' data-id=`${tourId}`)
+    h2= title
+    p= description
+    each label, i in labels
+      - if(label === 'startLocation')
+        .form__group
+          h2.form__label--location Start Location
+          .form__group--location
+            +tourFormLocationGroup('form__group--location-wrapper','startDescription','description','Rome, Italy',`${values ? values[i].description : ''}`)
+            +tourFormLocationGroup('form__group--location-wrapper','startAddress','address','Colosseum, Piazza del Colosseo, 1, 00184 Roma RM, Italy',`${values ? values[i].address : ''}`)
+            +tourFormLocationGroup('form__group--location-wrapper','startCoordinates','coordinates','12.496366,41.902783',`${values ? values[i].coordinates : ''}`)
+      - else if(label === 'locations')
+        .form__group
+          h2.form__label--location Locations 
+          - if(values)
+            .form__group--locations
+              each location, idx in values[i]
+                .form__group--location
+                  - const uuid = Math.random().toString(36).substring(2,2 + 2)
+                  +tourFormLocationGroup('form__group--location-wrapper',`description-${uuid}`,'description','Coloseum',location.description)
+                  +tourFormLocationGroup('form__group--location-wrapper',`coordinates-${uuid}`,'coordinates','12.496366,41.902783',location.coordinates)
+                  +tourFormLocationGroup('form__group--location-wrapper',`day-${uuid}`,'day','2',location.day)
+                  button(type='button' class='form__delete form__delete--location' data-locations=`${JSON.stringify(values[i])}` onclick='deleteLocationItem(event)' data-order=`${idx}`) delete
+          - else
+            .form__group--locations
+              .form__group--location
+                +tourFormLocationGroup('form__group--location-wrapper',`description`,'description','Coloseum')
+                +tourFormLocationGroup('form__group--location-wrapper',`coordinates`,'coordinates','12.496366,41.902783')
+                +tourFormLocationGroup('form__group--location-wrapper',`day`,'day','2')
+          .center
+            button(class="btn btn--locations" type='button') Add Location
+      - else
+        .form__group
+          label(for=`${label}` class=`form__label ${label === 'startDates' ? 'form__label--dates' : ''}`)= `${label[0].toUpperCase()}${label.slice(1)}`
+          - if(label === 'description')
+            textarea(id=`${label}` class="form__textarea" rows='10')= `${values ? values[i] : ""}`
+          - else if(label === 'startDates')
+            .form__group--date
+              label(for="date" class='form__label') 
+              input(type='date' id='date' class="form__input--date")
+              button(class='btn btn--date' type='button') Add Date
+            .form__group--dates-container
+              - if(values && values[i])
+                each date in values[i]
+                  .form__date
+                    span= date.toLocaleDateString()
+                    button(class='form__delete form__delete--date' type='button' onclick="deleteDate(event)" data-date=`${JSON.stringify(date)}`) Delete            
+          - else
+            input(type="text" id=`${label}` class="form__input" value=`${values ? values[i] : ""}`)
+    - if(images)
+      +tourFormImageGroup('cover','Add Cover',images.imageCover)
+      +tourFormImageGroup('photos','Add Images',images.images)
+    - else
+      +tourFormImageGroup('cover','Add Cover')
+      +tourFormImageGroup('photos','Add Images')
+    .form__group.form__group--user
+      label(for="users" class='form__label')
+      select(id='users')
+        each user in users
+          if user.role === 'lead-guide' || user.role === 'guide'
+            option(value=`${user.id}-${user.username}-${user.role}`)= `${user.username} - ${user.role}`
+      button(type='button' class='btn btn--user' ) Add User 
+      .form__users
+        if tourUsers 
+          each tourUser in tourUsers 
+            .form__user
+              span= tourUser.name
+              span= tourUser.role
+              button(class='form__delete form__delete--user' data-user=`${JSON.stringify(tourUser.id)}` onclick='deleteUser(event)') Delete
+
+    span.form__error
+    button(type='submit' class='btn')= `${id[0].toUpperCase()}${id.slice(1)}`

@@ -1,0 +1,21 @@
+extends ../base/base
+
+block content  
+    .admin-page
+        - const urlPart = currentUrl.split('/')[2]
+        - console.log(currentUrl.split('/'))
+
+        include _sidebar
+        main.main
+            - if(urlPart === 'settings')
+                include _accountForm
+            - if(urlPart === 'bookings')
+                include _bookings
+            - if(urlPart === 'admin-tours')
+                include _adminTours
+            - if(urlPart === 'admin-users')
+                include _adminUsers
+            - if(urlPart === 'admin-bookings')
+                include _bookings
+            - if(urlPart === 'reviews')
+                include _reviews

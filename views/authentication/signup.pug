@@ -1,0 +1,10 @@
+extends ../base/base
+include _formBox
+
+block content
+    include ../overview/_navbar
+
+    .form-container
+        +formBox("signup","Join Timeless Trails","Sign up now to unlock a world of exploration and discovery.",["username","email","password","passwordConfirm"])
+
+    include ../overview/_footer

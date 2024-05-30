@@ -1,0 +1,10 @@
+extends ../base/base
+include _formBox
+
+block content
+    include ../overview/_navbar
+
+    .form-container
+        +formBox("forgot","Reset Your Password","Forgot your password? No worries! Enter your email address below, and we'll send you instructions on how to reset it",["email"])
+
+    include ../overview/_footer

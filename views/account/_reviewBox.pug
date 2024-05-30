@@ -1,0 +1,10 @@
+mixin reviewBox(review)
+    .tour-review
+        picture.tour__review-image-box
+            img(src=`/assets/users/${review.user.photo}` alt=`${review.user.name}`)
+        p= review.review
+        .review-rating
+            each star in [1,2,3,4,5]
+                svg 
+                    use(href=`/assets/icons.svg#icon-${review.rating < star ? "star-outlined" : "star"}`)
+            span= review.rating

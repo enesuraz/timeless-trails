@@ -1,0 +1,16 @@
+mixin formBox(id,title,description,labels)
+    form(id=`${id}`, class='form')
+        h2= title
+        p= description
+        each label, i in labels
+            .form__group
+                label(for=`${label}` class='form__label')= `${label[0].toUpperCase()}${label.slice(1)}`
+                - if(label.includes('password') || label.includes('Password'))
+                    input(type="password" id=`${label}` class="form__input" placeholder=`Type your password again`)
+                - else
+                    input(type=`${label === 'email' || label === 'password' ? label : 'text'}` id=`${label}` class="form__input" placeholder=`Type your ${label}`)
+        - if(id === 'login')
+            .form__group
+                a(href="/forgot" class='btn--forgot') If you forgot your password ? 
+        span.form__error
+        button(type='submit' class='btn')= `${id[0].toUpperCase()}${id.slice(1)}`

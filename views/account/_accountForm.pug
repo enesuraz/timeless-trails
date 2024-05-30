@@ -1,0 +1,19 @@
+include ../authentication/_formBox
+include ../base/_formGroup
+
+div(class='main-settings')
+    form(id='changeSettings' class='form--user-settings')
+        h2 Update Your Account Settings
+        p Use the form below to change your account settings and continue your journey
+        +formGroup('name','Name',user.name,'Your name')
+        +formGroup('email','Email',user.email,'Your email')
+        .form__group 
+            label(for="photo" class="form__label--user-photo")
+                img(src=`/assets/users/${user.photo ? user.photo : 'default.jpg'}`, alt=`${user.name}`)
+                span Change Your Photo
+            input(type="file" accept='image/*' id='photo')
+        span.form__error 
+        .form__group--buttons
+            button(type='submit' class='btn') Update Settings
+            button(type='button' class='form__delete form__delete--delete-yourself') Delete Me
+    +formBox('changePassword','Update Your Password','Use the form below to change your password and continue your journey',['oldPassword','newPassword',"newPassword confirm"])

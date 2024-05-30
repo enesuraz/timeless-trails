@@ -1,0 +1,25 @@
+include ../base/_formGroup
+
+if users.length > 0
+    .users-form.grid
+        each gettingUser in users
+            - if(gettingUser.role !== 'admin' || gettingUser.name !== user.name)
+                form(id=`user-${gettingUser.id}` class='form form--users')
+                    h2= `Update ${gettingUser.name} Account` 
+                    p Update Role,name or email
+                    +formGroup(`username-${gettingUser.id}`,'Name',gettingUser.name,'Your name') 
+                    +formGroup(`email-${gettingUser.id}`,'Email',gettingUser.email,'Your email') 
+                    .form__group.form__group--user-role
+                        label(for=`role-${gettingUser.id}`) User role  
+                        select(id=`role-${gettingUser.id}`)
+                            - const userRoles = ['admin','user','guide','lead-guide'].filter(role => role !== gettingUser.role)
+                            option(value=`${gettingUser.role}` selected)= gettingUser.role
+                            each role in userRoles 
+                                option(value=`${role}`)= role   
+                    span.form__error 
+                    .form__group--buttons
+                        button(type='submit' class='btn') Update Settings
+                        button(type='button' class='form__delete form__delete--user-delete') Delete User
+else 
+    .center 
+        h2 We did not found any user yet

@@ -1,0 +1,17 @@
+extends ../base/base
+
+include ../base/_singleTour
+
+block content
+    include _navbar
+
+    if tours.length > 0
+        section.overview.grid
+            each tour in tours
+                +singleTour('See Details',`/tour/${tour.slug}`,tour)
+    else
+        .overview-message 
+            .center 
+                h2 We Are Not found any tour
+
+    include _footer

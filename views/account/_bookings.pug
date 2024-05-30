@@ -1,0 +1,7 @@
+if bookings.length !== 0
+    .bookings.grid
+        include _booking
+        +bookingDetail(bookings)
+else 
+    .center 
+        h2 We did not found any book yet

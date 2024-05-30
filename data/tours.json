@@ -1,0 +1,154 @@
+[
+  {
+    "_id": "5c88fa8cf4afda39709c2955",
+    "name": "Inca Trail Expedition",
+    "duration": 11,
+    "maxGroupSize": 15,
+    "difficulty": "easy",
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 2,
+    "price": 1299,
+    "summary": "Trek through the Andes and discover the secrets of the Inca civilization.",
+    "description": "Embark on an unforgettable adventure through the Andes mountains and follow in the footsteps of the ancient Incas. Trek along the legendary Inca Trail to Machu Picchu and marvel at the breathtaking beauty of the Andean landscape. Explore the ruins of ancient Inca cities and learn about the history, culture, and traditions of this remarkable civilization.",
+    "imageCover": "peru-cover.jpg",
+    "images": ["peru-1.jpg", "peru-2.jpg", "peru-3.jpg", "peru-4.jpg"],
+    "startDates": [
+      "2024-07-22T09:00:00.000Z",
+      "2024-08-26T09:00:00.000Z",
+      "2024-09-30T09:00:00.000Z"
+    ],
+    "startLocation": {
+      "type": "Point",
+      "coordinates": [-71.978638, -13.53195],
+      "address": "Plaza de Armas, Cusco 08002, Peru",
+      "description": "Cusco, Peru"
+    },
+    "locations": [
+      {
+        "type": "Point",
+        "coordinates": [-72.545563, -13.163141],
+        "description": "Machu Picchu",
+        "day": 2,
+        "_id": "5c88fa8cf4afda39709c2959"
+      },
+      {
+        "type": "Point",
+        "coordinates": [-72.01145, -13.335389],
+        "description": "Sacred Valley",
+        "day": 4,
+        "_id": "5c88fa8cf4afda39709c2958"
+      },
+      {
+        "type": "Point",
+        "coordinates": [-71.972222, -13.531111],
+        "description": "Cusco Historic Center",
+        "day": 5,
+        "_id": "5c88fa8cf4afda39709c2957"
+      }
+    ],
+    "guides": ["5c8a1e1a2f8fb814b56fa182", "5c8a1f292f8fb814b56fa184"]
+  },
+  {
+    "_id": "5c88fa8cf4afd239709c2955",
+    "name": "Samurai Trails of Japan",
+    "duration": 12,
+    "maxGroupSize": 17,
+    "difficulty": "medium",
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 2,
+    "price": 1499,
+    "summary": "Follow in the footsteps of the legendary samurai warriors.",
+    "description": "Embark on a journey through Japan's feudal past and explore the historic castles, temples, and battlegrounds of the samurai era. Visit iconic sites such as Kyoto's Kinkaku-ji Temple, Nijo Castle, and Hiroshima's Peace Memorial Park. Experience the art, culture, and martial traditions of Japan's legendary samurai warriors.",
+    "imageCover": "tokyo-cover.jpg",
+    "images": ["tokyo-1.jpg", "tokyo-2.jpg", "tokyo-3.jpg", "tokyo-4.jpg"],
+    "startDates": [
+      "2024-07-08T09:00:00.000Z",
+      "2024-08-12T09:00:00.000Z",
+      "2024-09-16T09:00:00.000Z"
+    ],
+    "startLocation": {
+      "type": "Point",
+      "description": "Tokyo, Japan",
+      "address": "Senso-ji Temple, 2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan",
+      "coordinates": [139.691706, 35.689487]
+    },
+    "locations": [
+      {
+        "type": "Point",
+        "coordinates": [135.713592, 35.039479],
+        "description": "Kinkaku-ji Temple",
+        "day": 2,
+        "_id": "664ef80eaf7dcffbde152298"
+      },
+      {
+        "type": "Point",
+        "coordinates": [134.693968, 34.839835],
+        "description": "Himeji Castle",
+        "day": 4,
+        "_id": "664ef80eaf7dcffbde152299"
+      },
+      {
+        "type": "Point",
+        "coordinates": [132.322532, 34.296692],
+        "description": "Itsukushima Shrine",
+        "day": 6,
+        "_id": "664ef80eaf7dcffbde15229a"
+      }
+    ],
+    "guides": ["5c8a1f292f8fb814b56fa184", "5c8a1e1a2f8fb814b56fa182"]
+  },
+  {
+    "_id": "5c80fa8cf4afda39709c2955",
+    "name": "Ottoman Empire Odyssey",
+    "duration": 10,
+    "maxGroupSize": 20,
+    "difficulty": "medium",
+    "ratingsAverage": 5,
+    "ratingsQuantity": 2,
+    "price": 1599,
+    "summary": "Discover the grandeur and opulence of the Ottoman Empire.",
+    "description": "Travel back in time to the golden age of the Ottoman Empire and explore the historic palaces, mosques, and bazaars of Istanbul. Visit iconic landmarks such as the Hagia Sophia, Topkapi Palace, and Blue Mosque. Journey to the ancient cities of Bursa and Edirne and experience the rich culture and heritage of the Ottoman era.",
+    "imageCover": "istanbul-cover.jpg",
+    "images": [
+      "istanbul-1.jpg",
+      "istanbul-2.jpg",
+      "istanbul-3.jpg",
+      "istanbul-4.jpg"
+    ],
+    "startDates": [
+      "2024-07-15T09:00:00.000Z",
+      "2024-08-19T09:00:00.000Z",
+      "2024-09-23T09:00:00.000Z"
+    ],
+    "startLocation": {
+      "type": "Point",
+      "description": "Istanbul, Turkey",
+      "address": "Hagia Sophia, Sultan Ahmet Mahallesi, Ayasofya Meydanı, 34122 Fatih/İstanbul, Turkey",
+      "coordinates": [28.978359, 41.00824]
+    },
+    "locations": [
+      {
+        "type": "Point",
+        "coordinates": [28.976462, 41.008583],
+        "description": "Hagia Sophia",
+        "day": 1,
+        "_id": "664ef7caaf7dcffbde1521eb"
+      },
+      {
+        "type": "Point",
+        "coordinates": [28.988772, 41.011006],
+        "description": "Topkapi Palace",
+        "day": 3,
+        "_id": "664ef7caaf7dcffbde1521ec"
+      },
+      {
+        "type": "Point",
+        "coordinates": [27.339747, 37.939888],
+        "description": "Ephesus Ancient City",
+        "day": 6,
+        "_id": "664ef7caaf7dcffbde1521ed"
+      }
+    ],
+    "guides": ["5c8a1f292f8fb814b56fa184", "5c8a1e1a2f8fb814b56fa182"]
+  }
+]

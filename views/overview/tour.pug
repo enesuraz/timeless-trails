@@ -1,0 +1,81 @@
+extends ../base/base
+
+block append head
+    link(rel='stylesheet' href='https://unpkg.com/leaflet@1.6.0/dist/leaflet.css')
+    script(src='https://unpkg.com/leaflet@1.6.0/dist/leaflet.js')
+
+mixin box(description,icon)
+    .tour-info__detail
+        svg
+            use(href=`/assets/icons.svg#icon-${icon}`)
+        span= description
+
+
+block content
+    include _navbar
+
+    section.tour-details
+        .gallery
+            each img, i in tour.images
+                picture(class=`gallery-photo--${i + 1}`)
+                    img(src=`/assets/tours/${img}` alt=`${tour.name}-image-${i+ 1}`)
+        .tour-info
+            .tour-info__details
+                h3.tour-info__title= `About ${tour.name} tour`
+                p.tour-info__description= tour.description
+                .tour-info__details-container
+                    +box(`${tour.difficulty} difficulty`,'drop')
+                    +box(`${tour.startDates[0].toLocaleString("en-US", { month: "long", year: "numeric" })}`,'calendar')
+                    +box(`${tour.ratingsAverage}/${tour.ratingsQuantity} Rated`,'star')
+                    +box(`${tour.locations.length} stop places`,'flag')
+                .tour-info__btn-container
+                    - if(!user)
+                        a(href="/login" class='btn') login for booking
+                    - else
+                        if user.role === 'user'
+                            button.btn.btn--booking(data-tour=`${tour._id.toString()}`) Book Now
+            .tour-info__guides
+                .tour-info__guides-container
+                    h2 Your Tour Guides
+                    each guide in tour.guides
+                        .tour-info__guide
+                            img(src=`/assets/users/${guide.photo}` alt=`${guide.name}`)
+                            - if(guide.role === 'lead-guide')
+                                span.tour-info__guide-position Lead Guide
+                            - if(guide.role === 'guide')
+                                span.tour-info__guide-position Tour Guide
+                            span.tour-info__guide-name= guide.name
+        if tour.reviews
+            .reviews.grid
+                each review in tour.reviews 
+                    .review
+                        .review__image-box
+                            img(src=`/assets/users/${review.user.photo ? review.user.photo : 'default.jpg'}` alt=`${review.user.name}` class='review__image')
+                        .review__stars
+                            each totalStar in [1,2,3,4,5]
+                                svg
+                                    use(href=`/assets/icons.svg#icon-star${review.rating >= totalStar ? '' : '-outlined'}`)
+                        .review__details
+                            .review__desc= review.review
+                            span.review__author= `- ${review.user.name}`
+                            if review.user.id === user.id
+                                button(type='button' class='review__delete-btn' data-id=`${review.id}`) Delete Review
+        .tour-interactions
+            .tour-review-form
+                if user.role === 'user'
+                    form(id=`tour-${tour.id}` class='form form--create-review')
+                        h2 Create Review
+                        p Use the form below to change your account settings and continue your journey
+                        .form__group 
+                            label(for="review" class='form__label') Create Review
+                            textarea(id='review' class='form__textarea' rows='7')
+                        .form__group.form__group--stars
+                            each star in [1,2,3,4,5]
+                                svg(data-star=`${star}` class='form__star' onclick="handleStar(event)")
+                                    use(href=`/assets/icons.svg#icon-star-outlined`)
+                        span.form__error
+                        button(type='submit' class='btn') Create Review
+            .tour-map
+                #map(data-locations=`${JSON.stringify(tour.locations)}`)
+
+        include _footer

@@ -1,0 +1,25 @@
+mixin navLink(text,icon,href,active)
+    li.sidebar-item
+        a(href=`${href}`,class=`sidebar-link ${active ? 'active' : ''}`) 
+            svg
+                use(href=`/assets/icons.svg#icon-${icon}`)
+            span= text 
+
+.sidebar
+    div(class='sidebar__photo')
+        img(src=`/assets/users/${user.photo ? user.photo : 'default.jpg'}`, alt=`${user.name}`)
+        a(href="/" class='sidebar__home-link') Home page 
+
+    ul(class='sidebar-list')
+        +navLink('Settings','cog','/account/settings',urlPart === 'settings')
+        if user.role !== 'admin'
+            +navLink('My Bookings','shopping-bag','/account/bookings',urlPart === 'bookings')
+            +navLink('My Reviews','star','/account/reviews',urlPart === 'reviews')
+        if user.role === 'admin'
+            +navLink('Manage Tours','map','/account/admin-tours',urlPart === 'admin-tours')
+            +navLink('Manage Users','user','/account/admin-users',urlPart === 'admin-users')
+        if user.role === 'admin' || user.role === 'lead-guide'
+            +navLink('See Bookings','shopping-bag','/account/admin-bookings',urlPart === 'admin-bookings')
+
+    button(id='logout' class='btn sidebar__logout') Logout
+

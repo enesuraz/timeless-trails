@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "664ef88aaf7dcffbde152345",
+    "review": "The Inca Trail Expedition was a life-changing experience! The trek was challenging but incredibly rewarding, with breathtaking views at every turn.",
+    "rating": 5,
+    "tour": "5c88fa8cf4afda39709c2955",
+    "user": "5c8a21d02f8fb814b56fa189"
+  },
+  {
+    "_id": "664ef8b9af7dcffbde15238f",
+    "review": "The Samurai Trails of Japan tour exceeded all my expectations! Visiting the historic temples and castles in Kyoto and Himeji was a highlight.",
+    "rating": 4,
+    "tour": "5c88fa8cf4afd239709c2955",
+    "user": "5c8a21d02f8fb814b56fa189"
+  },
+  {
+    "_id": "664ef901af7dcffbde1523d9",
+    "review": "The Istanbul tour was absolutely mesmerizing! Visiting the Hagia Sophia and Topkapi Palace felt like stepping back in time.",
+    "rating": 5,
+    "tour": "5c80fa8cf4afda39709c2955",
+    "user": "5c8a21d02f8fb814b56fa189"
+  },
+  {
+    "_id": "664ef95eaf7dcffbde152432",
+    "review": "Absolutely stunning! The Sacred Valley and Cusco were filled with rich history and culture. The tour was well-organized, and we learned so much about the Inca civilization.",
+    "rating": 4,
+    "tour": "5c88fa8cf4afda39709c2955",
+    "user": "5c8a21d02f8fb814b56fa182"
+  },
+  {
+    "_id": "664ef98caf7dcffbde15247f",
+    "review": "Tokyo's mix of modernity and tradition is amazing! The tour covered everything from the bustling streets of Tokyo to the serene temples.",
+    "rating": 5,
+    "tour": "5c88fa8cf4afd239709c2955",
+    "user": "5c8a21d02f8fb814b56fa182"
+  },
+  {
+    "_id": "664ef9c1af7dcffbde1524cc",
+    "review": "Exploring Istanbul's historical sites was a dream come true! The Blue Mosque and Ephesus Ancient City were highlights of the tour.",
+    "rating": 5,
+    "tour": "5c80fa8cf4afda39709c2955",
+    "user": "5c8a21d02f8fb814b56fa182"
+  }
+]

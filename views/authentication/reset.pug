@@ -1,0 +1,10 @@
+extends ../base/base
+include _formBox
+
+block content
+    include ../overview/_navbar
+
+    .form-container
+        +formBox("reset","Create New Password","Secure your Timeless Trails account by creating a new password. Please enter your new password below",["password","passwordConfirm"])
+
+    include ../overview/_footer

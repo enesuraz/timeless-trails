@@ -1,0 +1,34 @@
+mixin bookingDetails(title,value)
+    .booking__details-info-container
+        span.booking__details-info-title= title
+        span.booking__details-info= value 
+
+mixin bookingDetail(bookings)
+    each booking in bookings
+        if user.role === 'lead-guide'
+            if booking.tour.guides.find(guide => guide === user.id)
+                .booking
+                    h2 Booking Details
+                    .booking__sub
+                        img(src=`/assets/tours/${booking.tour.imageCover}`, alt=`${booking.tour.name}` class='booking__sub-image')
+                        a(href=`/tour/${booking.tour.slug}` class="header-link")= booking.tour.name
+                        span.booking__sub-price= `$${booking.price}`
+                    .booking__details
+                        +bookingDetails('Booking ID',`#${booking.id}`)
+                        - const options = { month: 'long', weekday: 'long', year: 'numeric'};
+                        - const date = new Date(booking.createdAt.toString()).toLocaleDateString("en-US", options)
+                        +bookingDetails('Booking Date',date)
+                        +bookingDetails('Payment Method','Credit Card')
+        else
+            .booking
+                h2 Booking Details
+                .booking__sub
+                    img(src=`/assets/tours/${booking.tour.imageCover}`, alt=`${booking.tour.name}` class='booking__sub-image')
+                    a(href=`/tour/${booking.tour.slug}` class="header-link")= booking.tour.name
+                    span.booking__sub-price= `$${booking.price}`
+                .booking__details
+                    +bookingDetails('Booking ID',`#${booking.id}`)
+                    - const options = { month: 'long', weekday: 'long', year: 'numeric'};
+                    - const date = new Date(booking.createdAt.toString()).toLocaleDateString("en-US", options)
+                    +bookingDetails('Booking Date',date)
+                    +bookingDetails('Payment Method','Credit Card')
